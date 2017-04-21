@@ -167,4 +167,29 @@
             <input type="number" min="0" class="form-control" [(ngModel)]="labelWidth">
         </div>
     </div>
+  <div class="row">
+    <div class="col-md-4">
+      <form [formGroup]="form" >
+        <h4>Form Validation</h4>
+        <div class="form-group"
+             [ngClass]="{'has-error':!form.controls['view'].valid && form.controls['view'].touched}">
+          <label class="control-label" for="view">Estado</label>
+          <bSwitch
+            id="view"
+            [formControl]="form.controls['view']"
+            [switch-size]="'small'"
+            [switch-on-text]="'Activo'"
+            [switch-off-text]="'Inactivo'"
+            [switch-on-color]="'success'"
+            [switch-off-color]="'danger'"
+          ></bSwitch>
+          <pre>{{ form.value | json }}</pre>
+          <span class="help-text"
+                *ngIf="form.controls['view'].hasError('required') && form.controls['view'].touched">
+              Debes seleccionar el estado.
+            </span>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>
